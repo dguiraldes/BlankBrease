@@ -1,0 +1,56 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<ion-list>
+
+	  <ion-item>
+	    <ion-label stacked>Username</ion-label>
+	    <ion-input type="text" #username></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label stacked>Password</ion-label>
+	    <ion-input type="password" #password></ion-input>
+	  </ion-item>
+
+	</ion-list>
+
+	<ion-list>
+		<ion-item>
+			<button ion-button full color="danger" (click) = "signIn()">
+				Log In 
+			</button>
+		</ion-item>
+
+		<ion-item>
+			<button ion-button full color="danger" (click) = "register()">
+				Register
+			</button>
+		</ion-item>
+		<button ion-button clear center>Forgot your password?</button>
+	</ion-list>
+
+	<ion-list>
+		<ion-item>
+			<button ion-button full (click)="signInWithFacebook()">
+				Login with facebook
+			</button> 
+		</ion-item>
+	</ion-list>
+
+
+</ion-content>
