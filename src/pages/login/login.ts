@@ -53,12 +53,12 @@ export class LoginPage {
   	
 
   }
-  // gotoHome(){
-  // 	if(this.loggedIn==true){
-  // 		this.alert('funciona','')
-  // 		this.navCtrl.setRoot(HomePage);
-  // 	}
-  // }
+  gotoHome(){
+  	if(this.loggedIn==true){
+  		this.alert('funciona','')
+  		this.navCtrl.setRoot(HomePage);
+  	}
+  }
 
    register(){
   	this.navCtrl.push(RegisterPage);
