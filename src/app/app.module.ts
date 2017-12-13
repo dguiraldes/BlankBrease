@@ -4,6 +4,9 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { AgmCoreModule } from '@agm/core';
+import { File } from '@ionic-native/file';
+import { FileChooser } from '@ionic-native/file-chooser';
+import { FilePath } from '@ionic-native/file-path';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -11,11 +14,16 @@ import { CreateEventPage } from '../pages/create-event/create-event';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { MapPage} from '../pages/map/map';
+import { LoginNewPage } from '../pages/login-new/login-new';
+import { ProfilePage } from '../pages/profile/profile';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { GeoProvider } from '../providers/geo/geo';
+import { AuthProvider } from '../providers/auth/auth';
+import { UserProvider } from '../providers/user/user';
+import { ImghandlerProvider } from '../providers/imghandler/imghandler';
 
 
 export const firebaseConfig = {
@@ -34,7 +42,9 @@ export const firebaseConfig = {
     CreateEventPage,
     LoginPage,
     RegisterPage,
-	MapPage
+		MapPage,
+		LoginNewPage,
+		ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +52,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-	AgmCoreModule.forRoot({
+		AgmCoreModule.forRoot({
 		apiKey: "AIzaSyDT2aviXJCQgK3C9A_tV0nPAM-6euS_Lb8"
 	})
   ],
@@ -53,14 +63,22 @@ export const firebaseConfig = {
     CreateEventPage,
     LoginPage,
     RegisterPage,
-	MapPage
+		MapPage,
+		LoginNewPage,
+		ProfilePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    GeoProvider
+		File,
+    FilePath,
+		FileChooser,
+    GeoProvider,
+    AuthProvider,
+    UserProvider,
+    ImghandlerProvider
   ]
 })
 export class AppModule {}
