@@ -16,6 +16,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { GeoProvider } from '../providers/geo/geo';
+import { GroupsProvider } from '../providers/groups/groups';
 
 
 export const firebaseConfig = {
@@ -60,7 +61,8 @@ export const firebaseConfig = {
     SplashScreen,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    GeoProvider
+    GeoProvider,
+    GroupsProvider
   ]
 })
 export class AppModule {}
