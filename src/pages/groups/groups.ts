@@ -20,13 +20,34 @@ export class GroupsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events,
               public loadingCtrl: LoadingController, public groupservice: GroupsProvider) {
   }
+	
+	ionViewWillEnter() {
+    let loader = this.loadingCtrl.create({
+      content: 'Getting your groups, please wait...'
+    });
+    loader.present();
+    this.groupservice.getmygroups();
+    loader.dismiss();
+    this.events.subscribe('allmygroups', () => {
+      this.allmygroups = this.groupservice.mygroups;
+    })
+  }
+ 
+  ionViewDidLeave() {
+    this.events.unsubscribe('allmygroups');
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad GroupsPage');
   }
 
-	  addgroup() {
+	addGroup() {
     this.navCtrl.push('NewGroupPage');
+  }
+
+	openGroup(group) {
+    //this.groupservice.getIntoGroup(group.groupName);
+    this.navCtrl.push('GroupInfoPage', { groupName: group.groupName });
   }
 
 }

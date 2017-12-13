@@ -9,7 +9,7 @@
   <ion-navbar>
     <ion-title>groups</ion-title>
 		<ion-buttons end>
-			<button ion-button icon-only (click)="addgroup()">
+			<button ion-button icon-only (click)="addGroup()">
 				<ion-icon name="contacts"></ion-icon>
 			</button>
 		</ion-buttons>
@@ -19,5 +19,15 @@
 
 
 <ion-content padding>
-
+	<ion-list no-lines>
+		<ion-list-header>
+			My Groups
+		</ion-list-header>
+		<ion-item *ngFor="let item of allmygroups">
+			<ion-avatar item-left>
+				<img src="{{item.groupimage}}">
+			</ion-avatar>
+			<h3 (click)="openGroup(item)">{{item.groupName}}</h3>
+		</ion-item>
+	</ion-list>
 </ion-content>

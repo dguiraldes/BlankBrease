@@ -16,6 +16,7 @@ import { RegisterPage } from '../pages/register/register';
 import { MapPage} from '../pages/map/map';
 import { LoginNewPage } from '../pages/login-new/login-new';
 import { ProfilePage } from '../pages/profile/profile';
+import { GroupsPage } from '../pages/groups/groups';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
@@ -43,7 +44,8 @@ export const firebaseConfig = {
     RegisterPage,
 		MapPage,
 		LoginNewPage,
-		ProfilePage
+		ProfilePage,
+		GroupsPage
   ],
   imports: [
     BrowserModule,
@@ -52,8 +54,8 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
 		AgmCoreModule.forRoot({
-		apiKey: "AIzaSyDT2aviXJCQgK3C9A_tV0nPAM-6euS_Lb8"
-	})
+			apiKey: "AIzaSyDT2aviXJCQgK3C9A_tV0nPAM-6euS_Lb8"
+		})
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -64,7 +66,8 @@ export const firebaseConfig = {
     RegisterPage,
 		MapPage,
 		LoginNewPage,
-		ProfilePage
+		ProfilePage,
+		GroupsPage
   ],
   providers: [
     StatusBar,
@@ -72,7 +75,7 @@ export const firebaseConfig = {
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GeoProvider,
-	File,
+		File,
     FilePath,
 		FileChooser,
     GeoProvider,
