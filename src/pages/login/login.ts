@@ -1,5 +1,5 @@
 import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, MenuController } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
@@ -25,8 +25,20 @@ export class LoginPage {
 	@ViewChild('password') password;
 
 
-  constructor(public navCtrl: NavController, private fire: AngularFireAuth, 
-  	public alertCtrl: AlertController, public ref: ChangeDetectorRef ){
+  constructor(
+		public navCtrl: NavController, 
+		private fire: AngularFireAuth, 
+  	public alertCtrl: AlertController, 
+		public ref: ChangeDetectorRef,
+		public menuCtrl: MenuController ){
+  }
+
+	ionViewWillEnter() {
+		this.menuCtrl.swipeEnable( false );
+  }
+
+  ionViewDidLeave() {
+		this.menuCtrl.swipeEnable( true );
   }
 
   ionViewDidLoad() {

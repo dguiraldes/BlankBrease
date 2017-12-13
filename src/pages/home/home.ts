@@ -17,6 +17,8 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, private afDB: AngularFireDatabase
   	,private fire: AngularFireAuth ) {
+		console.log(fire.auth.currentUser.photoURL);
+		console.log(fire.auth.currentUser.displayName);
   	this.email=fire.auth.currentUser.email;
   	this.pic=fire.auth.currentUser.photoURL;
   }
