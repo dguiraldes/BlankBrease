@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, AlertController, MenuController } 
 import { usercreds } from '../../models/interfaces/usercreds';
 import { AuthProvider } from '../../providers/auth/auth';
 import { HomePage } from '../home/home';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 
 /**
  * Generated class for the LoginNewPage page.
@@ -19,7 +21,7 @@ import { HomePage } from '../home/home';
 export class LoginNewPage {
 
   credentials = {} as usercreds;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authservice: AuthProvider, public menuCtrl: MenuController, public alertCtrl: AlertController) {
+  constructor(private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public authservice: AuthProvider, public menuCtrl: MenuController, public alertCtrl: AlertController) {
   }
 
 	ionViewWillEnter() {
@@ -58,6 +60,15 @@ export class LoginNewPage {
    
   signup() {
 		this.navCtrl.push('SignupPage');
+  }
+
+	signInWithFacebook() {
+    this.afAuth.auth
+      .signInWithPopup(new firebase.auth.FacebookAuthProvider())
+      .then(data => {
+      	this.navCtrl.setRoot(HomePage);
+      	//this.ref.detectChanges();
+      })
   }
  
 }
