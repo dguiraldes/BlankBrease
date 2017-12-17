@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule} from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Camera } from '@ionic-native/camera';
 
 
 import { MyApp } from './app.component';
@@ -14,6 +17,9 @@ import { RegisterPage } from '../pages/register/register';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { ImageProvider } from '../providers/image/image';
+import { PreloaderProvider } from '../providers/preloader/preloader';
+import { DatabaseProvider } from '../providers/database/database';
 
 
 export const firebaseConfig = {
@@ -36,6 +42,7 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule
@@ -52,7 +59,11 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     AngularFireDatabase,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    Camera,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ImageProvider,
+    PreloaderProvider,
+    DatabaseProvider
   ]
 })
 export class AppModule {}
