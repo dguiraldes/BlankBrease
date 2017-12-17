@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { NavController, Platform, ModalController } from 'ionic-angular';
 import { ImageProvider } from '../../providers/image/image';
 import { PreloaderProvider } from '../../providers/preloader/preloader';
@@ -30,6 +31,8 @@ export class HomePage {
               private _LOADER      : PreloaderProvider,
               private _DB          : DatabaseProvider
               ) {
+		console.log(fire.auth.currentUser.photoURL);
+		console.log(fire.auth.currentUser.displayName);
   	this.email=fire.auth.currentUser.email;
   	this.pic=fire.auth.currentUser.photoURL;
   }
