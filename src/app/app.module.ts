@@ -7,6 +7,7 @@ import { AgmCoreModule } from '@agm/core';
 import { File } from '@ionic-native/file';
 import { FileChooser } from '@ionic-native/file-chooser';
 import { FilePath } from '@ionic-native/file-path';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -75,6 +76,7 @@ export const firebaseConfig = {
 		File,
     FilePath,
 		FileChooser,
+		NativeGeocoder,
     GeoProvider,
     AuthProvider,
     UserProvider,

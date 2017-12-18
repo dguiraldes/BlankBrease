@@ -4,6 +4,8 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 //testing
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
+import { Platform } from 'ionic-angular';
 
 /**
  * Generated class for the MapPage page.
@@ -31,7 +33,9 @@ export class MapPage {
 		private geo: GeoProvider,
 		public navCtrl: NavController,
 		public alertCtrl: AlertController,
-		public database: AngularFireDatabase	//testing
+		public database: AngularFireDatabase,	//testing
+		private nativeGeocoder: NativeGeocoder,
+		public platform: Platform
 	) {
 		this.getUserLocation();
     this.subscription = this.geo.hits
@@ -94,14 +98,33 @@ export class MapPage {
         {
           text: 'Save',
           handler: data => {
-            let newEv = this.eventRef.push({
-              title: data.title,
-							time: data.time,
-							location: data.location,
-							date: data.date,
-							coords: [parseFloat(data.lat), parseFloat(data.lng)]
-            });
-						this.geo.setLocation(newEv.key, [parseFloat(data.lat), parseFloat(data.lng)]);
+						if (this.platform.is('cordova')) {
+							this.nativeGeocoder.forwardGeocode(data.location+', Chile').then((coordinates: NativeGeocoderForwardResult) => {
+								console.log('The coordinates are latitude=' + coordinates.latitude + ' and longitude=' + coordinates.longitude);
+								data.lat = coordinates.latitude;
+								data.lng = coordinates.longitude;
+								console.log(data.lat);
+								console.log(data.lng);
+								let newEv = this.eventRef.push({
+									title: data.title,
+									time: data.time,
+									location: data.location,
+									date: data.date,
+									coords: [parseFloat(data.lat), parseFloat(data.lng)]
+								});
+								this.geo.setLocation(newEv.key, [parseFloat(data.lat), parseFloat(data.lng)]);
+								}).catch((error: any) => console.log(error));
+							
+						} else {
+							let newEv = this.eventRef.push({
+								title: data.title,
+								time: data.time,
+								location: data.location,
+								date: data.date,
+								coords: [parseFloat(data.lat), parseFloat(data.lng)]
+							});
+							this.geo.setLocation(newEv.key, [parseFloat(data.lat), parseFloat(data.lng)]);
+						}
           }
         }
       ]

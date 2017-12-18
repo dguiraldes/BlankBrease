@@ -20,6 +20,7 @@ import firebase from 'firebase';
 export class ProfilePage {
   avatar: string;
   displayName: string;
+	creationDate: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public userservice: UserProvider, public zone: NgZone, public alertCtrl: AlertController,
@@ -35,6 +36,7 @@ export class ProfilePage {
 			console.log(res.displayName);
 			console.log(res.photoURL);
       this.displayName = res.displayName;
+			this.creationDate = res.creationDate;
       this.zone.run(() => {
         this.avatar = res.photoURL;
       })
