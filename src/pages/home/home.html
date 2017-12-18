@@ -1,48 +1,64 @@
 <ion-header>
-  <ion-navbar>
-  	<button ion-button icon-only menuToggle>
-  		<ion-icon name="menu"></ion-icon>
-  	</button>
-  </ion-navbar>
+   <ion-navbar>
+      <ion-title>
+         Brease
+      </ion-title>
+<!--       <ion-buttons end>
+       <button
+          ion-button
+          icon-only
+          (click)="addRecord()">
+  	  <ion-icon name="add"></ion-icon>
+       </button>
+    </ion-buttons> -->
+
+   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-	<ion-card>
 
-	  <ion-item>
-	    <ion-avatar item-start>
-	      <img src="assets/imgs/jisong.png">
-	    </ion-avatar>
-	    <h2>Jisong Wu</h2>
-	    <p>December 20th 2017</p>
-	  </ion-item>
+   <ion-list>
+      <ion-card
+         class="event"
+         text-wrap
+         *ngFor="let event of events | async">
+         <ion-item>
+            <div *ngIf="event.image">
+               <img [src]="event.image">
+            </div>
+            <h2>{{ event.title }}</h2>
+            <small>{{ event.date }} ({{ event.time }})</small>
+            <p>{{ event.location }}</p>
 
-	  <img src="assets/imgs/presentation.png">
+<!--             <section class="multiples">
+               <h3>Actors/Actresses</h3>
+             <ion-chip
+                *ngFor="let actor of movie.actors"
+                padding-left
+                padding-right
+                margin-right>{{ actor.name }}</ion-chip>
+            </section>
+ -->
 
-	  <ion-card-content>
-	    <p>Final presentations are on this date</p>
-	  </ion-card-content>
+         </ion-item>
 
-	  <ion-row>
-	    <ion-col>
-	      <button ion-button icon-left clear small>
-	        <ion-icon name="md-checkbox-outline"></ion-icon>
-	        <div>12 people attending</div>
-	      </button>
-	    </ion-col>
-	    <ion-col>
-	      <button ion-button icon-left clear small>
-	        <ion-icon name="text"></ion-icon>
-	        <div>4 Comments</div>
-	      </button>
-	    </ion-col>
-	  </ion-row>
 
-	</ion-card>
+         <div class="manage-record" padding>
+           <button
+              ion-button
+              text-center
+              color="primary"
+              (click)="editEvent(event)">Edit</button>
 
-  <ion-fab right bottom>
-    <button ion-fab color="danger" (click)="gotoCreateEvent()">
-    	<ion-icon name="add"></ion-icon>
-    </button>
-  </ion-fab>
+           <button
+              ion-button
+              text-center
+              color="danger"
+              (click)="deleteEvent(event)">Delete</button>
+       </div>
+
+      </ion-card>
+   </ion-list>
+
+
 </ion-content>

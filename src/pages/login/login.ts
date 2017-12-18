@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams, AlertController, MenuController } 
 
 import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
+import { ImageProvider } from '../../providers/image/image';
+import { PreloaderProvider } from '../../providers/preloader/preloader';
+import { DatabaseProvider } from '../../providers/database/database';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -65,12 +68,9 @@ export class LoginPage {
   	
 
   }
-  // gotoHome(){
-  // 	if(this.loggedIn==true){
-  // 		this.alert('funciona','')
-  // 		this.navCtrl.setRoot(HomePage);
-  // 	}
-  // }
+  gotoHome(){
+		this.navCtrl.setRoot(HomePage);
+  }
 
    register(){
   	this.navCtrl.push(RegisterPage);

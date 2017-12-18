@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule} from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Camera } from '@ionic-native/camera';
 import { AgmCoreModule } from '@agm/core';
 import { File } from '@ionic-native/file';
 import { FileChooser } from '@ionic-native/file-chooser';
@@ -24,7 +27,11 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { GeoProvider } from '../providers/geo/geo';
 import { AuthProvider } from '../providers/auth/auth';
 import { UserProvider } from '../providers/user/user';
-import { ImghandlerProvider } from '../providers/imghandler/imghandler';import { GroupsProvider } from '../providers/groups/groups';
+import { ImghandlerProvider } from '../providers/imghandler/imghandler';
+import { ImageProvider } from '../providers/image/image';
+import { PreloaderProvider } from '../providers/preloader/preloader';
+import { DatabaseProvider } from '../providers/database/database';
+import { GroupsProvider } from '../providers/groups/groups';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyBUkpKTWuriOn1NHv1EfSCgOCO2ofjsTmU",
@@ -50,6 +57,7 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -74,13 +82,19 @@ export const firebaseConfig = {
     SplashScreen,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    GeoProvider,
-		File,
+	File,
     FilePath,
-		FileChooser,
+	FileChooser,
     GeoProvider,
     AuthProvider,
     UserProvider,
-    ImghandlerProvider, GroupsProvider  ]
+    ImghandlerProvider,
+    Camera,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+	GroupsProvider,
+    ImageProvider,
+    PreloaderProvider,
+    DatabaseProvider
+  ]
 })
 export class AppModule {}
