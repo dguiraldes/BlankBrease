@@ -54,11 +54,9 @@ export class NewGroupPage {
   }
  
   creategroup() {
-    this.groupservice.addgroup(this.newgroup).then(() => {
-      this.navCtrl.pop();
-    }).catch((err) => {
-      alert(JSON.stringify(err));
-    })
+    this.groupservice.addgroup(this.newgroup);
+		alert("Grupo creado");
+		this.navCtrl.pop();
   }
  
   editgroupname() {

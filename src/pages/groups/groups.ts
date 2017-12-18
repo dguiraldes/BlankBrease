@@ -46,8 +46,9 @@ export class GroupsPage {
   }
 
 	openGroup(group) {
-    //this.groupservice.getIntoGroup(group.groupName);
-    this.navCtrl.push('GroupInfoPage', { groupName: group.groupName });
+    this.groupservice.getintogroup(group.groupKey);
+		console.log(group.groupKey)
+    this.navCtrl.push('GroupInfoPage', { groupId: group.groupKey });
   }
 
 }
