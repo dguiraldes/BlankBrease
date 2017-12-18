@@ -10,6 +10,8 @@ import { AgmCoreModule } from '@agm/core';
 import { File } from '@ionic-native/file';
 import { FileChooser } from '@ionic-native/file-chooser';
 import { FilePath } from '@ionic-native/file-path';
+import { FormBuilder, FormGroup, Validators,  FormsModule} from '@angular/forms';
+
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -19,6 +21,7 @@ import { RegisterPage } from '../pages/register/register';
 import { MapPage} from '../pages/map/map';
 import { LoginNewPage } from '../pages/login-new/login-new';
 import { ProfilePage } from '../pages/profile/profile';
+import { ModalsPage } from '../pages/modals/modals';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
@@ -51,9 +54,11 @@ export const firebaseConfig = {
 		MapPage,
 		LoginNewPage,
 		ProfilePage
+  
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
@@ -73,6 +78,7 @@ export const firebaseConfig = {
 		MapPage,
 		LoginNewPage,
 		ProfilePage
+
   ],
   providers: [
     StatusBar,

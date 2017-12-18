@@ -5,6 +5,8 @@ import { ImageProvider } from '../../providers/image/image';
 import { PreloaderProvider } from '../../providers/preloader/preloader';
 import { DatabaseProvider } from '../../providers/database/database';
 
+// import { ModalsPage } from '../modals/modals';
+
 import { CreateEventPage } from '../create-event/create-event';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -53,19 +55,42 @@ loadAndParseEvents()
       this._LOADER.hidePreloader();
    }
 
+deleteEvent(event)
+   {
+      this._DB.deleteEvent(event.id)
+      .then((data) =>
+      {
+         this.loadAndParseEvents();
+      });
+   }
 
-   // addRecord()
-   // {
-   //    let modal = this.modalCtrl.create('Modals');
-   //    modal.onDidDismiss((data) =>
-   //    {
-   //       if(data)
-   //       {
-   //          this.loadAndParseEvents();
-   //       }
-   //    });
-   //    modal.present();
-   // }
+   editEvent(event)
+   {
+      let params = { event: event, isEdited: true },
+          modal  = this.modalCtrl.create('ModalsPage', params);
+
+      modal.onDidDismiss((data) =>
+      {
+         if(data)
+         {
+            this.loadAndParseEvents();
+         }
+      });
+      modal.present();
+   }
+
+   addEvent()
+   {
+      let modal = this.modalCtrl.create('ModalsPage');
+      modal.onDidDismiss((data) =>
+      {
+         if(data)
+         {
+            this.loadAndParseEvents();
+         }
+      });
+      modal.present();
+   }
 
 
   gotoCreateEvent(){

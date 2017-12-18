@@ -44,7 +44,6 @@ export class LoginNewPage {
  
   signin() {
     this.authservice.login(this.credentials).then(data=>{
-  			this.alert('Cool','You\'re logged in');
   			this.navCtrl.setRoot(HomePage);
   		})
   		.catch(error=>{ 

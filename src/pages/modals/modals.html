@@ -1,0 +1,159 @@
+<ion-header>
+   <ion-toolbar>
+      <ion-title>
+         {{ title }}
+      </ion-title>
+      <ion-buttons start>
+         <button
+            ion-button
+            (click)="closeModal()">
+           <span
+              ion-text
+              color="primary"
+              showWhen="ios">Cancel</span>
+           <ion-icon
+              name="md-close"
+              showWhen="android,windows"></ion-icon>
+         </button>
+      </ion-buttons>
+   </ion-toolbar>
+</ion-header>
+<ion-content>
+   <form
+      [formGroup]="form"
+      (ngSubmit)="saveEvent(form.value)">
+
+   	  <ion-item-divider color="light">
+         <div *ngIf="!isEditable">
+            Add a new Event
+         </div>
+
+         <div *ngIf="isEditable">
+            Edit this event
+         </div>
+   	  </ion-item-divider>
+
+
+   	  <ion-item>
+         <ion-label stacked>Event title:</ion-label>
+         <ion-input
+            type="text"
+            formControlName="title"
+            [(ngModel)]="eventTitle" [ngModelOptions]="{standalone: true}"></ion-input>
+   	  </ion-item>
+
+
+
+   	  <ion-item>
+         <span
+            ion-text
+            color="danger"
+            block
+            text-center
+            padding-top
+            padding-bottom
+            (click)="selectImage()">Select an image</span>
+            <input
+               type="hidden"
+               name="image"
+               formControlName="image"
+               [(ngModel)]="eventImage2">
+            <img [src]="eventImage2">
+   	  </ion-item>
+
+
+
+   	  <ion-item>
+         <ion-label stacked>Event Location:</ion-label>
+         <ion-input
+            type="text"
+            formControlName="location"
+            [(ngModel)]="eventLocation"></ion-input>
+   	  </ion-item>
+
+
+
+<!--    	  <ion-item>
+         <ion-label stacked>Type:</ion-label>
+         <ion-select
+            formControlName="eventType"
+            multiple="true"
+            [(ngModel)]="movieGenres">
+             <ion-option value="Action">Action</ion-option>
+             <ion-option value="Comedy">Comedy</ion-option>
+             <ion-option value="Documentary">Documentary</ion-option>
+             <ion-option value="Historical">Historical</ion-option>
+             <ion-option value="Romance">Romance</ion-option>
+             <ion-option value="Science Fiction">Science Fiction</ion-option>
+             <ion-option value="Thriller">Thriller</ion-option>
+             <ion-option value="Zombie">Zombie</ion-option>
+             <ion-option value="War">War</ion-option>
+         </ion-select>
+   	  </ion-item> -->
+
+
+    <ion-item>
+      <ion-label> Date</ion-label>
+      <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="eventDate"></ion-datetime>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>Time</ion-label>
+      <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="eventTime"></ion-datetime>
+    </ion-item>
+
+
+
+<!--    	  <ion-item>
+         <ion-label stacked>Description:</ion-label>
+         <ion-textarea
+			rows="6"
+            formControlName="description"
+            [(ngModel)]="eventDescription"></ion-textarea>
+   	  </ion-item> -->
+
+
+
+<!--    	  <ion-item>
+         <ion-label stacked>Film rating:</ion-label>
+         <ion-select
+            formControlName="rating"
+            [(ngModel)]="movieRating">
+             <ion-option value="PG">PG</ion-option>
+             <ion-option value="12">12</ion-option>
+             <ion-option value="12A">12A</ion-option>
+             <ion-option value="15">15</ion-option>
+             <ion-option value="18">18</ion-option>
+             <ion-option value="U">U</ion-option>
+             <ion-option value="R18">R18</ion-option>
+         </ion-select>
+   	  </ion-item> -->
+
+
+
+
+   	  <ion-item>
+   	     <input
+   	        type="hidden"
+   	        name="eventId">
+         <button
+           ion-button
+           block
+           color="primary"
+           text-center
+           padding-top
+           padding-bottom
+           [disabled]="!form.valid">
+            <div *ngIf="!isEditable">
+               Add a new event
+            </div>
+
+            <div *ngIf="isEditable">
+               Update this event
+            </div>
+            </button>
+   	  </ion-item>
+
+   </form>
+</ion-content>

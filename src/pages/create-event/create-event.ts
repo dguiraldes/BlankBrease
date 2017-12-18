@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ImageProvider } from '../../providers/image/image';
+import { PreloaderProvider } from '../../providers/preloader/preloader';
+import { DatabaseProvider } from '../../providers/database/database';
+
 
 import { HomePage } from '../home/home';
 /**
@@ -16,7 +20,12 @@ import { HomePage } from '../home/home';
 })
 export class CreateEventPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private _IMG         : ImageProvider,
+              private _LOADER      : PreloaderProvider,
+              private _DB          : DatabaseProvider
+              ) {
   }
 
   ionViewDidLoad() {
